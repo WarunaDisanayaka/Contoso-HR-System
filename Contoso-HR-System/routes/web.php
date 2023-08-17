@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::get('/employee',function(){
+    return view('employee.index');
+})->middleware(['auth','role:Employee'])->name('employee.index');
+
+Route::get('/hr',function(){
+    return view('hr.index');
+})->middleware(['auth','role:HR'])->name('hr.index');
+
+Route::get('/director',function(){
+    return view('director.index');
+})->middleware(['auth','role:Director'])->name('director.index');
+
+require __DIR__.'/auth.php';
