@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,17 +30,38 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Redirect based on user role
+    Route::get('/dashboard', function () {
+        $user = Auth::user();
+        if ($user->hasRole('Employee')) {
+            return view('employee.index');
+        } elseif ($user->hasRole('HR')) {
+            return view('hr.index');
+        } elseif ($user->hasRole('Director')) {
+            return view('director.index');
+        }
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+});
 
-Route::get('/employee',function(){
-    return view('employee.index');
-})->middleware(['auth','role:Employee'])->name('employee.index');
+Route::get('/users', function () {
+    return view('hr.addingusers');
+})->middleware('auth')->name('hr.addingusers');
 
-Route::get('/hr',function(){
-    return view('hr.index');
-})->middleware(['auth','role:HR'])->name('hr.index');
+Route::get('/hr/addingusers', function () {
+    return view('hr.addingusers');
+})->name('hr.addingusers');
 
-Route::get('/director',function(){
-    return view('director.index');
-})->middleware(['auth','role:Director'])->name('director.index');
+Route::get('/hr/addingusers', [UserController::class, 'create'])->name('user.create');
+Route::post('/hr/addingusers', [UserController::class, 'store'])->name('user.store');
+
+
+
+
 
 require __DIR__.'/auth.php';
