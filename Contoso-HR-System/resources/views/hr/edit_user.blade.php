@@ -19,7 +19,8 @@
          <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/dashboard" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+
             <span class="brand-text font-weight-light">HR</span>
             </a>
             <!-- Sidebar -->
@@ -57,25 +58,18 @@
                      </li>
                   </ul>
                </nav>
-               <!-- /.sidebar-menu -->
             </div>
-            <!-- /.sidebar -->
          </aside>
-         <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <div class="content-header">
                <div class="container-fluid">
                   <div class="row mb-2">
                      <div class="col-sm-6">
                         <h1 class="m-0">Adding Users</h1>
                      </div>
-                     <!-- /.col -->
                      <div class="col-sm-6">
                      </div>
-                     <!-- /.col -->
                   </div>
-                  <!-- /.row -->
                </div>
                @if ($errors->any())
                <div class="alert alert-danger">
@@ -86,32 +80,35 @@
                   </ul>
                </div>
                @endif
-               <form action="{{ route('user.store') }}" method="POST">
-                  @csrf
-                  <div class="card-body">
-                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-                     </div>
-                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-                     </div>
-                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                     </div>
-                     <div class="form-group">
-                        <label for="role">User Role</label>
-                        <select class="form-control" id="role" name="role">
+               <form action="{{ route('user.update', $user) }}" method="POST">
+    @csrf
+    @method('PUT') 
+
+    <div class="card-body">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ $user->name }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ $user->email }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="role">User Role</label>
+            <select class="form-control" id="role" name="role">
                            <option value="employee">Employee</option>
                            <option value="hr">HR</option>
                            <option value="director">Director</option>
                         </select>
-                     </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-               </form>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>
+
             </div>
          </div>
          <footer class="main-footer">

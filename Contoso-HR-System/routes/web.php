@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 
 /*
@@ -49,19 +48,6 @@ Route::middleware('auth')->group(function () {
     })->middleware(['auth', 'verified'])->name('dashboard');
 });
 
-Route::get('/users', function () {
-    return view('hr.addingusers');
-})->middleware('auth')->name('hr.addingusers');
-
-Route::get('/hr/addingusers', function () {
-    return view('hr.addingusers');
-})->name('hr.addingusers');
-
-Route::get('/hr/addingusers', [UserController::class, 'create'])->name('user.create');
-Route::post('/hr/addingusers', [UserController::class, 'store'])->name('user.store');
-
-
-
-
+require __DIR__.'/users.php';
 
 require __DIR__.'/auth.php';
