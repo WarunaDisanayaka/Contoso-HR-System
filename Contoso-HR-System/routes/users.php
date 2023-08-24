@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\UserController;
 
-
-// Users routes
 Route::get('/addingusers', function () { return view('hr.addingusers');})->middleware('auth')->name('hr.addingusers');
 Route::post('/addingusers', [UserController::class, 'store'])->name('user.store');
 

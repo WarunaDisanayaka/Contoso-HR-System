@@ -1,7 +1,7 @@
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <script>
-    $.widget.bridge('uibutton', $.ui.button); // Resolve conflict in jQuery UI tooltip with Bootstrap tooltip
+   $.widget.bridge('uibutton', $.ui.button); // Resolve conflict in jQuery UI tooltip with Bootstrap tooltip
 </script>
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
@@ -15,4 +15,3 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->

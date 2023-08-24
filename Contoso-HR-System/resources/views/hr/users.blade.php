@@ -118,7 +118,7 @@
                                           <td>{{ $user->email }}</td>
                                           <td>
                                              @foreach ($user->roles as $role)
-                                             {{ $role->name }} <!-- Assuming the role has a 'name' attribute -->
+                                             {{ $role->name }}
                                              @endforeach
                                           </td>
                                           <td>
