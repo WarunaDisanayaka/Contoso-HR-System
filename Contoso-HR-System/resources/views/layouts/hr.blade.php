@@ -35,9 +35,7 @@
                               Adding Users
                            </p>
                         </a>
-                     </li>
-                     <!-- Add this inside your navigation bar or menu -->
-                     
+                     </li>                     
                      <li class="nav-item">
                         <a href="{{ route('hr.users') }}" class="nav-link">
                            <i class="nav-icon fas fa-users"></i> <!-- Users Icon -->
