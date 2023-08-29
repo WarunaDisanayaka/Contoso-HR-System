@@ -52,4 +52,10 @@ class User extends Authenticatable
     return $this->hasMany(Attendance::class,'userid');
 }
 
+public function salaries()
+{
+    return $this->hasMany(Salary::class);
+}
+
+
 }

@@ -50,14 +50,6 @@
       </p>
    </a>
 </li>
-<li class="nav-item">
-   <a href="{{ route('hr.addsalaries') }}" class="nav-link">
-   <i class="nav-icon fas fa-dollar-sign"></i> 
-      <p>
-         Add salaries
-      </p>
-   </a>
-</li>
 
                   <li class="nav-item">
                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -101,56 +93,36 @@
                         <!-- /.col -->
                      </div>
                      <div class="row">
-                        <div class="col-12">
-                           <div class="card">
-                              <div class="card-header">
-                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                       <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                       <div class="input-group-append">
-                                          <button type="submit" class="btn btn-default">
-                                          <i class="fas fa-search"></i>
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- /.card-header -->
-                              <div class="card-body table-responsive p-0" style="height: 300px;">
-                                 <table class="table table-head-fixed text-nowrap">
-                                    <thead>
-                                       <tr>
-                                          <th>ID</th>
-                                          <th>User</th>
-                                          <th>Email</th>
-                                          <th>Role</th>
-                                          <th>Action</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       @foreach ($users as $user)
-                                       <tr>
-                                          <td>{{ $user->id }}</td>
-                                          <td>{{ $user->name }}</td>
-                                          <td>{{ $user->email }}</td>
-                                          <td>
-                                             @foreach ($user->roles as $role)
-                                             {{ $role->name }}
-                                             @endforeach
-                                          </td>
-                                          <td>
-                                             <a href="edit/{{$user->id}}" class="btn btn-primary">Edit</a>
-                                             <a href="" class="btn btn-danger">Delete</a>
-                                          </td>
-                                       </tr>
-                                       @endforeach
-                                    </tbody>
-                                 </table>
-                              </div>
-                              <!-- /.card-body -->
-                           </div>
-                           <!-- /.card -->
-                        </div>
+                     <div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            Add Salary
+        </div>
+        <div class="card-body">
+        <form action="{{ route('hr.addsalary') }}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="user_id">User</label>
+        <select name="userid" class="form-control">
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="month">Month</label>
+        <input type="month" name="month" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Salary</button>
+</form>
+
+        </div>
+    </div>
+</div>
                      </div>
                   </div>
                   <!-- /.container-fluid -->
