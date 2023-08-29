@@ -44,6 +44,14 @@
                         </a>
                      </li>
                      <li class="nav-item">
+   <a href="{{ route('hr.usersattendance') }}" class="nav-link">
+      <i class="nav-icon fas fa-users"></i>
+      <p>
+         All Users Attendance
+      </p>
+   </a>
+</li>
+                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                            <i class="fas fa-sign-out-alt"></i>
                            <p>

@@ -50,7 +50,6 @@
       </p>
    </a>
 </li>
-
                   <li class="nav-item">
                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
@@ -93,56 +92,60 @@
                         <!-- /.col -->
                      </div>
                      <div class="row">
-                        <div class="col-12">
-                           <div class="card">
-                              <div class="card-header">
-                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                       <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                       <div class="input-group-append">
-                                          <button type="submit" class="btn btn-default">
-                                          <i class="fas fa-search"></i>
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- /.card-header -->
-                              <div class="card-body table-responsive p-0" style="height: 300px;">
-                                 <table class="table table-head-fixed text-nowrap">
-                                    <thead>
-                                       <tr>
-                                          <th>ID</th>
-                                          <th>User</th>
-                                          <th>Email</th>
-                                          <th>Role</th>
-                                          <th>Action</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       @foreach ($users as $user)
-                                       <tr>
-                                          <td>{{ $user->id }}</td>
-                                          <td>{{ $user->name }}</td>
-                                          <td>{{ $user->email }}</td>
-                                          <td>
-                                             @foreach ($user->roles as $role)
-                                             {{ $role->name }}
-                                             @endforeach
-                                          </td>
-                                          <td>
-                                             <a href="edit/{{$user->id}}" class="btn btn-primary">Edit</a>
-                                             <a href="" class="btn btn-danger">Delete</a>
-                                          </td>
-                                       </tr>
-                                       @endforeach
-                                    </tbody>
-                                 </table>
-                              </div>
-                              <!-- /.card-body -->
-                           </div>
-                           <!-- /.card -->
-                        </div>
+                     <div class="col-12">
+    <div class="card">
+        <!-- ... your previous code ... -->
+
+        <div class="card-body table-responsive p-0" style="height: 300px;">
+            <table class="table table-head-fixed text-nowrap">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            @if ($user->attendances->isEmpty())
+                                No attendance recorded
+                            @else
+                                @foreach ($user->attendances as $attendance)
+                                    {{ $attendance->check_in_date_time }}
+                                    <br>
+                                @endforeach
+                            @endif
+                        </td>
+                        <td>
+                            @if ($user->attendances->isEmpty())
+                                No attendance recorded
+                            @else
+                                @foreach ($user->attendances as $attendance)
+                                    {{ $attendance->check_out_date_time ?: 'Not checked out yet' }}
+                                    <br>
+                                @endforeach
+                            @endif
+                        </td>
+                        <td>
+                            <a href="edit/{{$user->id}}" class="btn btn-primary">Edit</a>
+                            <a href="" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <!-- ... your previous code ... -->
+    </div>
+</div>
                      </div>
                   </div>
                   <!-- /.container-fluid -->

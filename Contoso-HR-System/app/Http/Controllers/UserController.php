@@ -86,9 +86,10 @@ class UserController extends Controller
     $user->syncRoles([$role]); // Assuming you're using a role syncing method
 
     return redirect()->route('hr.users', $user)->with('success', 'User information updated successfully.');
+
 }
 
+   
 
-    
 
 }

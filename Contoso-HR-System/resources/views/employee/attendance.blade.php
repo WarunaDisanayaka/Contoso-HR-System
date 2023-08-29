@@ -73,29 +73,22 @@
                      </div>
                   </div>
                </div>
-               @if ($errors->any())
-               <div class="alert alert-danger">
-                  <ul>
-                     @foreach ($errors->all() as $error)
-                     <li>{{ $error }}</li>
-                     @endforeach
-                  </ul>
-               </div>
-               @endif
-               <form action="" method="POST"> <!-- Change the route to match the attendance storing route -->
-                  @csrf
-                  <div class="card-body">
-                     <div class="form-group">
-                        <label for="user_id">Select User</label>
-                        <select class="form-control" id="user_id" name="user_id">
-                           <option value="1">User 1</option>
-                           <option value="2">User 2</option>
-                           <!-- Add more options dynamically based on your users -->
-                        </select>
-                     </div>
-                     <button type="submit" class="btn btn-primary">Mark Attendance</button>
-                  </div>
-               </form>
+               @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+               <form action="{{ route('mark-attendance') }}" method="POST">
+   @csrf
+   @if (!$latestAttendance || ($latestAttendance && $latestAttendance->check_out_date_time))
+      <button type="submit" class="btn btn-success" name="action" value="checkin" @if ($latestAttendance && !$latestAttendance->check_out_date_time) disabled @endif>Check In</button>
+   @endif
+   @if ($latestAttendance && !$latestAttendance->check_out_date_time)
+      <button type="submit" class="btn btn-danger" name="action" value="checkout">Check Out</button>
+   @endif
+</form>
+
             </div>
          </div>
          <footer class="main-footer">
