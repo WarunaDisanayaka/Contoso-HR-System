@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Salary;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class SalaryController extends Controller
@@ -31,5 +34,13 @@ public function store(Request $request)
 
     return redirect()->route('hr.users')->with('success', 'Salary added successfully.');
 }
+
+public function showEmpSalary()
+    {
+        $user = Auth::user();
+    $salary = Salary::where('userid', $user->id)->first();
+
+    return view('employee.salaries', compact('salary','user'));
+    }
 
 }

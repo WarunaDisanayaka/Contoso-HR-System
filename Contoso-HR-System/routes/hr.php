@@ -23,7 +23,3 @@ Route::get('/salaries', [SalaryController::class,'index'])->name('hr.addsalaries
 Route::post('/addsalaries', [SalaryController::class,'store'])->name('hr.addsalary');
 
 
-
-// Route::post('/mark-attendance', 'AttendanceController@markAttendance')->name('mark-attendance');
-// Route::get('/mark-attendance', 'AttendanceController@showAttendanceForm')->name('attendance.form');
-

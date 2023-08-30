@@ -43,14 +43,21 @@
                      </a>
                   </li>
                   <li class="nav-item">
-   <a href="{{ route('hr.usersattendance') }}" class="nav-link">
-      <i class="nav-icon fas fa-users"></i>
-      <p>
-         All Users Attendance
-      </p>
-   </a>
-</li>
-
+                     <a href="{{ route('hr.usersattendance') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                           All Users Attendance
+                        </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ route('hr.addsalaries') }}" class="nav-link">
+                        <i class="nav-icon fas fa-dollar-sign"></i> 
+                        <p>
+                           Add salaries
+                        </p>
+                     </a>
+                  </li>
                   <li class="nav-item">
                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
@@ -93,36 +100,35 @@
                         <!-- /.col -->
                      </div>
                      <div class="row">
-                     <div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
-            Add Salary
-        </div>
-        <div class="card-body">
-        <form action="{{ route('hr.addsalary') }}" method="POST">
-    @csrf
-    <div class="form-group">
-        <label for="user_id">User</label>
-        <select name="userid" class="form-control">
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="month">Month</label>
-        <input type="month" name="month" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="amount">Amount</label>
-        <input type="number" name="amount" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-primary">Add Salary</button>
-</form>
-
-        </div>
-    </div>
-</div>
+                        <div class="col-md-6">
+                           <div class="card">
+                              <div class="card-header">
+                                 Add Salary
+                              </div>
+                              <div class="card-body">
+                                 <form action="{{ route('hr.addsalary') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                       <label for="user_id">User</label>
+                                       <select name="userid" class="form-control">
+                                          @foreach ($users as $user)
+                                          <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                          @endforeach
+                                       </select>
+                                    </div>
+                                    <div class="form-group">
+                                       <label for="month">Month</label>
+                                       <input type="month" name="month" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                       <label for="amount">Amount</label>
+                                       <input type="number" name="amount" class="form-control">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add Salary</button>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
                      </div>
                   </div>
                   <!-- /.container-fluid -->

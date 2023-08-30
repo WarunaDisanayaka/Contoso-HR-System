@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
     })->middleware(['auth', 'verified'])->name('dashboard');
 });
 
-require __DIR__.'/users.php';
+require __DIR__.'/hr.php';
 
 require __DIR__.'/employee.php';
 

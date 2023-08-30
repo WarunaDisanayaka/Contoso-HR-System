@@ -10,7 +10,7 @@ class AttendanceController extends Controller
 {
 
 
-    public function markAttendance(Request $request)
+public function markAttendance(Request $request)
 {
     $userId = auth()->user()->id;
     $now = now();
