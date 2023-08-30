@@ -51,4 +51,10 @@ public function showEmpSalary()
     return view('employee.salaries', compact('salary','user'));
     }
 
+public function allSalaries(){
+    $salaries = Salary::all();
+
+    return view('hr.allsalaries', compact('salaries'));
+}
+
 }

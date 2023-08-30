@@ -22,4 +22,7 @@ Route::get('/users/attendance', [AttendanceController::class, 'showAllUsersWithA
 Route::get('/salaries', [SalaryController::class,'index'])->name('hr.addsalaries');
 Route::post('/addsalaries', [SalaryController::class,'store'])->name('hr.addsalary');
 
+Route::get('/allsalaries', [SalaryController::class,'allSalaries'])->name('hr.allsalaries');
+
+
 
