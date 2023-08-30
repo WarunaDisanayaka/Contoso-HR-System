@@ -28,7 +28,15 @@ public function store(Request $request)
     ]);
 
     // Convert input month to full month name
-    $data['month'] = Carbon::createFromFormat('Y-m', $data['month'])->format('F');
+    $month = Carbon::createFromFormat('Y-m', $data['month'])->format('F');
+
+    $existingSalary = Salary::where('userid', $data['userid'])
+    ->where('month', $month)
+    ->first();
+
+    if ($existingSalary) {
+        return redirect()->back()->with('error', 'Salary for the user and month already exists.');
+    }
 
     Salary::create($data);
 
