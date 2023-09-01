@@ -51,6 +51,12 @@ class UserController extends Controller
         return view('hr.users', compact('users'));
     }
 
+    public function drallUsers()
+    {
+        $users = User::with('roles')->get(); 
+        return view('director.allusers', compact('users'));
+    }
+
     public function edit($id)
     {
         $user = User::findOrFail($id); // Find the user based on the ID

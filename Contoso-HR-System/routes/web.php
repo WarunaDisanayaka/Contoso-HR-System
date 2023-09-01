@@ -50,6 +50,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/hr.php';
 
+require __DIR__.'/director.php';
+
+
 require __DIR__.'/employee.php';
 
 require __DIR__.'/auth.php';
